@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WeatherModule } from './weather/weather.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { WeatherModule } from './weather/weather.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     WeatherModule
   ],
   providers: [],

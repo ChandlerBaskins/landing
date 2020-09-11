@@ -1,3 +1,3 @@
-<ng-container *ngIf="location | async as accuracy" >
-    <p>{{ accuracy  }}</p>
+<ng-container *ngIf="location | async as forecast">
+<p>{{ forecast |json }}</p>
 </ng-container>
