@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "landing-extension"
+  "defaultProject": "landing-extension",
+  "cli": {
+    "analytics": false
+  }
 }
