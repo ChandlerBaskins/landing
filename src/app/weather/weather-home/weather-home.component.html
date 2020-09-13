@@ -1,3 +1,5 @@
-<ng-container *ngIf="location | async as forecast">
-<p>{{ forecast |json }}</p>
+<ng-container *ngIf="location | async as forecastWeek">
+<div *ngFor="let forecast of forecastWeek">
+    <p>{{ forecast.main.temp }}</p>
+</div>
 </ng-container>
