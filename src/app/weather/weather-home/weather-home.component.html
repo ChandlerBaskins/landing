@@ -1,6 +1,7 @@
 <ng-container *ngIf="location | async as forecastWeek">
-  <div class="card-container" *ngFor="let forecast of forecastWeek">
+  <div class="card-container flex flex-col items-start mt-48 mb-24">
     <app-forecast-card
+      *ngFor="let forecast of forecastWeek"
       [date]="forecast.dt_txt"
       [temperature]="forecast.main.temp_max"
     ></app-forecast-card>
