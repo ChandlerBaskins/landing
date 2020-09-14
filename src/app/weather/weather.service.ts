@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 })
 export class WeatherService {
   private _url = 'https://api.openweathermap.org/data/2.5/forecast';
-  key = environment.OPENWEATHERKEY;
+  private key = environment.OPENWEATHERKEY;
   forecast = this.getCurrentLocation().pipe(
     map((val) => {
       return new HttpParams()
