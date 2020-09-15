@@ -1,5 +1,5 @@
-<ng-container *ngIf="messages | async as message" >
-    <p>{{message.message}}</p>
+<ng-container *ngIf="messages | async as messages" >
+    <p *ngFor="let message of messages">{{message.id}}</p>
 </ng-container>
 
 <button (click)="add()">Click</button>

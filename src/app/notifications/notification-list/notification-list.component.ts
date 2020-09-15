@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   NotificationsService,
   NotificationCommand,
@@ -11,24 +11,26 @@ import {
   styleUrls: ['./notification-list.component.scss'],
 })
 export class NotificationListComponent implements OnInit {
-  messages: BehaviorSubject<NotificationCommand>;
+  messages: Observable<NotificationCommand[]>;
+  counter = 1
   constructor(private notificationsService: NotificationsService) {
-    this.messages = notificationsService.notifications$;
-    notificationsService.addMessage({
-      type: 'success',
-      id: 1,
-      timeStamp: new Date(),
-      message: 'test in constructor',
-    });
+    this.messages = this.notificationsService.notificationsOutput$
+    // notificationsService.addMessage({
+    //   type: 'success',
+    //   id: 1,
+    //   timeStamp: new Date(),
+    //   message: 'test in constructor',
+    // });
   }
 
   add() {
     this.notificationsService.addMessage({
       type: 'success',
-      id: 2,
+      id: this.counter,
       timeStamp: new Date(),
       message: 'test in method',
     });
+    this.counter++
   }
 
   ngOnInit(): void {}

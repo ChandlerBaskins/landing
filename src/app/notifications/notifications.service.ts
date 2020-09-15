@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, scan, tap } from 'rxjs/operators';
 export interface NotificationCommand {
   message?: string;
   type: 'success' | 'error' | 'clear';
@@ -10,12 +11,27 @@ export interface NotificationCommand {
   providedIn: 'root',
 })
 export class NotificationsService {
-  notifications$: BehaviorSubject<NotificationCommand>;
+  private _notificationsInput: Subject<NotificationCommand>;
+  notificationsOutput$: Observable<NotificationCommand[]>;
+  private messages = new BehaviorSubject<NotificationCommand[]>([]);
+
+
+
   constructor() {
-    this.notifications$ = new BehaviorSubject<NotificationCommand>(null);
+    this._notificationsInput = new Subject<NotificationCommand>();
+    this.notificationsOutput$ = this._notificationsInput.pipe(
+      scan((acc: NotificationCommand[], val: NotificationCommand) => {
+        if (val.type === 'clear') {
+          acc.filter((message) => message.id !== val.id);
+        } else {
+          return [...acc, val];
+        }
+      }, [])
+    );
   }
 
-  addMessage(command:NotificationCommand) {
-    this.notifications$.next(command)
+  addMessage(command: NotificationCommand) {
+    this._notificationsInput.next(command);
   }
+  
 }
