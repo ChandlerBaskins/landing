@@ -11,10 +11,10 @@ import {
   styleUrls: ['./notification-list.component.scss'],
 })
 export class NotificationListComponent implements OnInit {
-  messages: Observable<NotificationCommand[]>;
+  messages$: Observable<NotificationCommand[]>;
   counter = 1
   constructor(private notificationsService: NotificationsService) {
-    this.messages = this.notificationsService.notificationsOutput$
+    this.messages$ = this.notificationsService.notificationsOutput$
     // notificationsService.addMessage({
     //   type: 'success',
     //   id: 1,
