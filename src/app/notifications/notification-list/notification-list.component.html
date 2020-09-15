@@ -1,1 +1,5 @@
-<p>notification-list works!</p>
+<ng-container *ngIf="messages | async as message" >
+    <p>{{message.message}}</p>
+</ng-container>
+
+<button (click)="add()">Click</button>
