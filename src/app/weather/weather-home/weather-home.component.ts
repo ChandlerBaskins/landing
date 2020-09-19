@@ -8,9 +8,9 @@ import { ForecastList } from '../models/OpenWeatherResponse';
   templateUrl: './weather-home.component.html',
 })
 export class WeatherHomeComponent implements OnInit {
-  location: Observable<ForecastList[]>;
+  forecast$: Observable<ForecastList[]>;
   constructor(private weatherService: WeatherService) {
-    this.location = this.weatherService.forecast$;
+    this.forecast$ = this.weatherService.forecast$;
   }
 
   ngOnInit(): void {}
