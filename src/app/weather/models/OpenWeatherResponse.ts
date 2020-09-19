@@ -34,7 +34,7 @@ interface Rain {
   _3h: number;
 }
 
- export interface ForecastList {
+ export interface Forecast{
   dt: number;
   main: Main;
   weather: Weather[];
@@ -67,6 +67,6 @@ export interface OpenWeatherResponse {
   cod: string;
   message: number;
   cnt: number;
-  list: ForecastList[];
+  list: Forecast[];
   city: City;
 }

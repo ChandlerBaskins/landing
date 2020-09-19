@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Forecast } from '../models/OpenWeatherResponse';
 
 @Component({
   selector: 'app-forecast-card',
@@ -6,8 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./forecast-card.component.scss'],
 })
 export class ForecastCardComponent implements OnInit {
-  @Input() temperature: string;
-  @Input() date: string;
+  @Input() forecast: Forecast;
   constructor() {}
 
   ngOnInit(): void {}
