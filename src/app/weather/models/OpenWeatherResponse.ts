@@ -34,7 +34,7 @@ interface Rain {
   _3h: number;
 }
 
-interface ForecastList {
+ export interface ForecastList {
   dt: number;
   main: Main;
   weather: Weather[];

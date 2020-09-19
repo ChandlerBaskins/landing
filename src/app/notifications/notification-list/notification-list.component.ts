@@ -25,7 +25,7 @@ export class NotificationListComponent implements OnInit {
 
   add() {
     this.notificationsService.addMessage({
-      type: 'success',
+      type: 'error',
       id: this.counter,
       timeStamp: new Date(),
       message: 'test in method',

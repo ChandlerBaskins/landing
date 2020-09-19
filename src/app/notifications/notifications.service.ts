@@ -13,7 +13,6 @@ export interface NotificationCommand {
 export class NotificationsService {
   private _notificationsInput: Subject<NotificationCommand>;
   notificationsOutput$: Observable<NotificationCommand[]>;
-  private messages = new BehaviorSubject<NotificationCommand[]>([]);
 
   constructor() {
     this._notificationsInput = new Subject<NotificationCommand>();
@@ -30,7 +29,6 @@ export class NotificationsService {
   }
 
   addMessage(command: NotificationCommand) {
-    //console.log(command);
     this._notificationsInput.next(command);
   }
 }

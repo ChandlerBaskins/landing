@@ -1,6 +1,6 @@
 <div class="card w-64 m-2 rounded-sm p-2">
   <div class="title flex justify-between">
-    <p class="ml-2">{{ date | date }}</p>
+    <p class="ml-2">{{ date | date: 'short' }}</p>
     <p class="mr-2">{{ temperature | number: "1.0-0" }} °</p>
   </div>
   <img class="ml-auto mr-auto mt-4" src="assets/sunny.svg" alt="" />

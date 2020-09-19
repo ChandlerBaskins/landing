@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 export class WeatherService {
   private _url = 'https://api.openweathermap.org/data/2.5/forecast';
   private key = environment.OPENWEATHERKEY;
-  forecast = this.getCurrentLocation().pipe(
+  forecast$ = this.getCurrentLocation().pipe(
     map((val) => {
       return new HttpParams()
         .set('lat', val.latitude.toString())
@@ -34,7 +34,7 @@ export class WeatherService {
     pluck('list'),
     //TAKE LIST OFF RESPONSE AND EMIT AN OBSERVABLEs THAT EMITS THE LIST OBJECT
     mergeMap((value) => of(...value)),
-    filter((value, idx) => idx === 4 || idx === 13 || idx === 22),
+    filter((value, idx) => idx === 1 || idx === 8 || idx === 17),
     toArray(),
     tap((res) => console.log(res))
   );
