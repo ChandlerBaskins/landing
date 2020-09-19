@@ -32,7 +32,7 @@ export class WeatherService {
       return this.http.get<OpenWeatherResponse>(this._url, { params });
     }),
     pluck('list'),
-    //TAKE LIST OFF RESPONSE AND EMIT AN OBSERVABLEs THAT EMITS THE LIST OBJECT
+    //TAKE LIST OFF RESPONSE AND EMIT OBSERVABLEs THAT EMITS THE OBJECT
     mergeMap((value) => of(...value)),
     filter((value, idx) => idx === 1 || idx === 8 || idx === 17),
     toArray(),
