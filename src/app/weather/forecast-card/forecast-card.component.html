@@ -12,7 +12,10 @@
       <p class="">Humidity: {{ forecast.main.humidity }}%</p>
     </div>
     <div class="detail mr-2 flex justify-between">
-      <p class="">Details: 50%</p>
+      <p class="">
+        Wind: {{ forecast.wind.deg | degreesToDirection }}
+        {{ forecast.wind.speed | number: "1.0-0" }} mph
+      </p>
       <p class="">Details: 50%</p>
     </div>
   </div>
