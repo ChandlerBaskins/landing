@@ -8,3 +8,4 @@
     ></app-forecast-card>
   </div>
 </ng-container>
+<div *ngIf="errorMessage$ | async as error">{{ error }}</div>

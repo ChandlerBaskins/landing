@@ -24,7 +24,7 @@ export class NotificationListComponent implements OnInit {
   }
 
   add() {
-    this.notificationsService.addMessage({
+    this.notificationsService.sendCommand({
       type: 'error',
       id: this.counter,
       timeStamp: new Date(),

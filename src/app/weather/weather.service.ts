@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import {
   tap,
   map,
   switchMap,
-  pluck,
   mergeMap,
   filter,
   toArray,
+  catchError,
 } from 'rxjs/operators';
 import { Forecast, OpenWeatherResponse } from './models/OpenWeatherResponse';
 import { environment } from 'src/environments/environment';
@@ -43,6 +43,10 @@ export class WeatherService {
     mergeMap((value) => of(...value)),
     filter((value, idx) => idx === 1 || idx === 8 || idx === 17),
     toArray(),
+    catchError((err) => {
+      console.error(err)
+      return throwError(err)
+    }),
     tap((res) => console.log(res))
   );
   getCurrentLocation() {
