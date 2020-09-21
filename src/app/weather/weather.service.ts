@@ -10,7 +10,7 @@ import {
   filter,
   toArray,
 } from 'rxjs/operators';
-import { OpenWeatherResponse } from './models/OpenWeatherResponse';
+import { Forecast, OpenWeatherResponse } from './models/OpenWeatherResponse';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -31,7 +31,14 @@ export class WeatherService {
     switchMap((params) => {
       return this.http.get<OpenWeatherResponse>(this._url, { params });
     }),
-    pluck('list'),
+    map((res) => {
+      return res.list.map((el) => {
+        return {
+          ...el,
+          city: res.city,
+        };
+      });
+    }),
     //TAKE LIST OFF RESPONSE AND EMIT OBSERVABLEs THAT EMITS THE OBJECT
     mergeMap((value) => of(...value)),
     filter((value, idx) => idx === 1 || idx === 8 || idx === 17),

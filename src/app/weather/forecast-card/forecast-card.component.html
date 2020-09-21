@@ -1,9 +1,14 @@
+
 <div class="card w-64 m-2 rounded-sm p-2">
   <div class="title flex justify-between">
     <p class="ml-2">{{ forecast.dt_txt | date: "short" }}</p>
     <p class="mr-2">{{ forecast.main.temp_max | number: "1.0-0" }}°</p>
   </div>
-  <img class="ml-auto mr-auto mt-4" src="assets/sunny.svg" alt="" />
+  <img
+    class="ml-auto mr-auto mt-4"
+    [src]="forecast.clouds.all | weatherIcon"
+    alt=""
+  />
   <div class="details mt-4 ml-2 mb-2">
     <div class="detail mr-2 flex justify-between">
       <p class="">
@@ -14,9 +19,10 @@
     <div class="detail mr-2 flex justify-between">
       <p class="">
         Wind: {{ forecast.wind.deg | degreesToDirection }}
-        {{ forecast.wind.speed | number: "1.0-0" }} mph
+        {{ forecast.wind.speed | number: "1.0-0" }}
+        <span class="text-xs secondary">MPH</span>
       </p>
-      <p class="">Details: 50%</p>
+      <p class="">{{ forecast.weather[0].description | titlecase }}</p>
     </div>
   </div>
 </div>
