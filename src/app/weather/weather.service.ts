@@ -9,9 +9,11 @@ import {
   filter,
   toArray,
   catchError,
+  shareReplay,
 } from 'rxjs/operators';
 import { Forecast, OpenWeatherResponse } from './models/OpenWeatherResponse';
 import { environment } from 'src/environments/environment';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable({
   providedIn: 'root',
@@ -44,10 +46,19 @@ export class WeatherService {
     filter((value, idx) => idx === 1 || idx === 8 || idx === 17),
     toArray(),
     catchError((err) => {
-      console.error(err)
-      return throwError(err)
+      console.error(err);
+      return throwError(err);
     }),
-    tap((res) => console.log(res))
+    tap((res) => {
+      console.log(res, 'in res');
+      this.notificationService.sendCommand({
+        message: 'succesfully retrieved weather',
+        type: 'success',
+        id: Math.round(Math.random() * 1000),
+        timeStamp: new Date(),
+      });
+    }),
+    shareReplay(1)
   );
   getCurrentLocation() {
     return new Observable<Coordinates>((subscriber) => {
@@ -60,5 +71,8 @@ export class WeatherService {
       );
     }).pipe(tap((res) => console.log(res)));
   }
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private notificationService: NotificationsService
+  ) {}
 }

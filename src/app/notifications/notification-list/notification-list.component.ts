@@ -23,12 +23,12 @@ export class NotificationListComponent implements OnInit {
     // });
   }
 
-  add() {
+  addClear() {
     this.notificationsService.sendCommand({
-      type: 'error',
+      type: 'clear',
       id: this.counter,
       timeStamp: new Date(),
-      message: 'test in method',
+      message: 'clear',
     });
     this.counter++
   }

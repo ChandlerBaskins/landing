@@ -17,7 +17,6 @@ export class NotificationsService {
   constructor() {
     this._notificationsInput = new Subject<NotificationCommand>();
     this.notificationsOutput$ = this._notificationsInput.pipe(
-      tap((res) => console.log(res)),
 
       //SCAN HOLDS A STATE OF NOTIFICATIONS
       scan((acc: NotificationCommand[], val: NotificationCommand) => {
@@ -30,11 +29,10 @@ export class NotificationsService {
     );
   }
 
-
   /**
    * Sends in a command into the observable pipeline that then tracks and holds a state of messages
-   * @param command a command object to be emitted into the observable in the form of Notification Command
-   * 
+   * @param command a command object to be emitted into the observable in the form of @interface NotificationCommand
+   *
    */
   sendCommand(command: NotificationCommand) {
     this._notificationsInput.next(command);

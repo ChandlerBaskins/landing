@@ -1,5 +1,20 @@
-<ng-container *ngIf="messages$ | async as messages" >
-    <p *ngFor="let message of messages">{{message.id}}</p>
+<ng-container *ngIf="messages$ | async as messages">
+  <div
+    class="bg-gray-800 p-2 w-64 ml-auto mr-2 h-40 rounded-lg m-2"
+    *ngFor="let message of messages"
+  >
+    <div
+      (click)="addClear()"
+      class="text-sm font-medium cursor-pointer flex justify-end mr-2"
+    >
+      X
+    </div>
+    <h4 class="text-gray-300 px-2">
+      Messages: {{ message.message | titlecase }}
+    </h4>
+    <p class="text-gray-300 px-2">
+      Time: {{ message.timeStamp | date: "short" }}
+    </p>
+    <p class="text-gray-300 px-2 mb-1">ID: {{ message.id }}</p>
+  </div>
 </ng-container>
-
-<button (click)="add()">Click</button>
