@@ -12,9 +12,9 @@ import {
 })
 export class NotificationListComponent implements OnInit {
   messages$: Observable<NotificationCommand[]>;
-  counter = 1
+  counter = 1;
   constructor(private notificationsService: NotificationsService) {
-    this.messages$ = this.notificationsService.notificationsOutput$
+    this.messages$ = this.notificationsService.notificationsOutput$;
     // notificationsService.addMessage({
     //   type: 'success',
     //   id: 1,
@@ -23,14 +23,23 @@ export class NotificationListComponent implements OnInit {
     // });
   }
 
-  addClear() {
+  addClear(id: number) {
     this.notificationsService.sendCommand({
       type: 'clear',
-      id: this.counter,
+      id,
       timeStamp: new Date(),
       message: 'clear',
     });
-    this.counter++
+    this.counter++;
+  }
+
+  addMesage() {
+    this.notificationsService.sendCommand({
+      message: 'another message',
+      type: 'success',
+      id: Math.round(Math.random() * 1000),
+      timeStamp: new Date(),
+    });
   }
 
   ngOnInit(): void {}

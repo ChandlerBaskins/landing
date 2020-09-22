@@ -21,7 +21,7 @@ export class NotificationsService {
       //SCAN HOLDS A STATE OF NOTIFICATIONS
       scan((acc: NotificationCommand[], val: NotificationCommand) => {
         if (val.type === 'clear') {
-          acc.filter((message) => message.id !== val.id);
+          return acc.filter((message) => message.id !== val.id);
         } else {
           return [...acc, val];
         }
