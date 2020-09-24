@@ -17,7 +17,6 @@ export class NotificationsService {
   constructor() {
     this._notificationsInput = new Subject<NotificationCommand>();
     this.notificationsOutput$ = this._notificationsInput.pipe(
-
       //SCAN HOLDS A STATE OF NOTIFICATIONS
       scan((acc: NotificationCommand[], val: NotificationCommand) => {
         if (val.type === 'clear') {
@@ -36,5 +35,14 @@ export class NotificationsService {
    */
   sendCommand(command: NotificationCommand) {
     this._notificationsInput.next(command);
+
+    setTimeout(() => {
+      this._notificationsInput.next({
+        type: 'clear',
+        id: command.id,
+        timeStamp: new Date(),
+        message: 'clear',
+      });
+    }, 5000);
   }
 }
