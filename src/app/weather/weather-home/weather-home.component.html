@@ -1,5 +1,5 @@
 <ng-container *ngIf="forecast$ | async as forecastWeek">
-  <div class="card-container flex flex-col items-start mt-48 mb-24">
+  <div class="card-container flex flex-col items-start ">
     <!-- refactor weather service to send in whole object so we can display location too -->
     <h2 class="">Weather for {{ weatherTitle$ | async }}</h2>
     <app-forecast-card
